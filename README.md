@@ -226,19 +226,78 @@ d. **Xây dựng Nền tảng Linh hoạt & Mở rộng:**
 * **FR-06.1: Quản trị Hệ thống & Phân quyền (RBAC)**
   * Quản lý danh sách tài khoản toàn bộ hệ thống (Admin, Operator, Kế toán, Tài xế, Khách hàng).
   * Cấu hình phân quyền chi tiết từng nhóm chức năng (Role-Based Access Control). Giới hạn các tính năng nhạy cảm (duyệt tiền, khóa tài khoản, sửa dữ liệu) đối với nhân viên vận hành thông thường.
-* **FR-06.2: Giám sát Vận hành (Live Monitoring Dashboard)**
-  * Hiển thị bản đồ trực tuyến theo dõi các chuyến đi đang diễn ra (Live Trips).
+* **FR-06.2: Giám sát Vận hành **
+  * Hiển thị bản đồ trực tuyến theo dõi các chuyến đi đang diễn ra .
   * Giám sát danh sách và vị trí tài xế đang hoạt động / đang bận.
   * Tra cứu và kiểm tra lịch sử giao dịch thanh toán chi tiết.
 * **FR-06.3: Báo cáo & Thống kê Kinh doanh**
   * Thống kê tổng số lượng chuyến đi, doanh thu theo khoảng thời gian (ngày/tuần/tháng).
   * Báo cáo tỷ lệ chuyến hoàn thành, tỷ lệ chuyến bị hủy (do khách / do tài xế).
   * Báo cáo hiệu suất hoạt động và doanh thu từng tài xế.
-* **FR-06.4: Nhật ký Kiểm soát (Audit Log)**
-  * Tự động ghi nhận log hành vi người dùng nội bộ (Ai thực hiện, Thao tác gì, Dữ liệu thay đổi ra sao, Thời gian).
-  * Cung cấp bộ lọc tra cứu Audit Log phục vụ kiểm tra khi phát sinh tranh chấp hoặc sự cố an ninh.
 
   ## 7. Vẽ usecase
+  ```mermaid
+    graph TD
+    %% Actors
+    Rider([Khách hàng])
+    Driver([Tài xế])
+    Operator([Nhân viên Vận hành])
+    Admin([Quản trị viên])
+    
+    %% External Systems
+    MapAPI[Dịch vụ Bản đồ API]
+    PaymentGateway[Cổng Thanh toán]
+
+    subgraph CAB System
+        subgraph Module Khách hàng
+            UC1[Đăng ký / Đăng nhập]
+            UC2[Đặt xe & Chọn loại xe]
+            UC3[Theo dõi lộ trình Realtime]
+            UC4[Đánh giá tài xế]
+        end
+
+        subgraph Module Tài xế
+            UC5[Bật/Tắt trạng thái làm việc]
+            UC6[Nhận / Từ chối chuyến]
+            UC7[Cập nhật tiến trình chuyến đi]
+        end
+
+        subgraph Core Engine
+            UC8((Tự động ghép chuyến))
+            UC9((Tính cước & Thanh toán))
+        end
+
+        subgraph Module Quản trị
+            UC10[Giám sát chuyến đi live]
+            UC11[Can thiệp / Hủy chuyến]
+            UC12[Quản lý phân quyền RBAC & Audit Log]
+        end
+    end
+
+    %% Relationships
+    Rider --> UC1
+    Rider --> UC2
+    Rider --> UC3
+    Rider --> UC4
+
+    Driver --> UC1
+    Driver --> UC5
+    Driver --> UC6
+    Driver --> UC7
+
+    Operator --> UC10
+    Operator --> UC11
+
+    Admin --> UC12
+
+    UC2 --> UC8
+    UC7 --> UC9
+
+    UC2 --- MapAPI
+    UC7 --- MapAPI
+    UC9 --- PaymentGateway
+  ```
   ## 8. Đặc tả usecase
   ## 9. Phân tích quy trình nghiệp vụ
+  ## 10. Phân tích nguyên tắc nghiệp vụ
   
