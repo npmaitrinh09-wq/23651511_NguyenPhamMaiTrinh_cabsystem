@@ -28,79 +28,147 @@
 | **12** | Bộ phận Pháp chế / Cơ quan quản lý | Người đánh giá sự tuân thủ|
 
 ### Ma trận Matrix
-### 1. Ma trận Stakeholders theo chuẩn MBP (Phân tích Quy trình)
-
 ```mermaid
 quadrantChart
-    title Ma Trận Stakeholders (Process Power vs Process Interest)
-    x-axis "Mức độ quan tâm quy trình Thấp " --> "Mức độ quan tâm quy trình Cao"
-    y-axis "Quyền lực quyết định Thấp " --> "Quyền lực quyết định Cao"
-    quadrant-1 "Giữ sự hài lòng"
-    quadrant-2 "Quản lý sát sao luồng quy trình"
+    title Ma trận Stakeholder - Power vs Interest
+    x-axis "Quan tâm thấp" --> "Quan tâm cao"
+    y-axis "Quyền lực thấp" --> "Quyền lực cao"
+
+    quadrant-1 "Quản lý sát sao"
+    quadrant-2 "Giữ sự hài lòng"
     quadrant-3 "Theo dõi tối thiểu"
-    quadrant-4 "Cập nhật thông tin quy trình"
-    
+    quadrant-4 "Cập nhật thông tin"
+
     "Ban Giám đốc": [0.85, 0.90]
-    "Đội ngũ IT/DevOps": [0.85, 0.85]
-    "Nhân viên vận hành": [0.75, 0.75]
-    "Bộ phận Pháp chế": [0.25, 0.80]
-    "Quản trị viên Admin": [0.70, 0.65]
-    "Bộ phận Kế toán/Tài chính": [0.65, 0.60]
+    "IT/DevOps": [0.85, 0.82]
+    "Nhân viên vận hành": [0.78, 0.78]
+    "Admin": [0.75, 0.72]
+
+    "Pháp chế": [0.25, 0.80]
+    "Kế toán/Tài chính": [0.65, 0.62]
+
     "Khách hàng": [0.90, 0.35]
-    "Tài xế": [0.85, 0.30]
-    "Bộ phận CSKH": [0.70, 0.25]
-    "Nhà cung cấp thanh toán": [0.40, 0.40]
-    "Nhà cung cấp bản đồ/định vị": [0.35, 0.35]
-    "Nhà cung cấp dịch vụ thông báo": [0.30, 0.20]
+    "Tài xế": [0.85, 0.32]
+    "CSKH": [0.72, 0.28]
+
+    "Nhà cung cấp thanh toán": [0.42, 0.42]
+    "Nhà cung cấp bản đồ": [0.35, 0.35]
+    "Nhà cung cấp thông báo": [0.30, 0.22]
 ```
 ## Giải thích Ma trận:
-* Quản lý sát sao (Góc trên phải): Ban Giám đốc, IT/DevOps, Nhân viên vận hành. Nhóm nắm quyền lực lớn và trực tiếp vận hành hệ thống, cần được trao đổi và kiểm soát chặt chẽ.
-* Giữ sự hài lòng (Góc trên trái): Bộ phận Pháp chế. Ít tham gia vận hành nhưng có quyền kiểm soát pháp lý, chỉ cần đảm bảo hệ thống tuân thủ luật pháp.
-* Cập nhật thông tin (Góc dưới phải): Khách hàng, Tài xế, Admin, Kế toán, CSKH. Người dùng trực tiếp, rất quan tâm vì ảnh hưởng đến công việc và tiền bạc, cần thông báo và hỗ trợ thường xuyên.
-* Theo dõi tối thiểu (Góc dưới trái): Các bên thứ ba (Thanh toán, Bản đồ, Thông báo). Chỉ cung cấp dịch vụ kỹ thuật phụ trợ, định kỳ kiểm tra hiệu năng là đủ.
+* Quản lý sát sao: Ban Giám đốc, IT/DevOps, Nhân viên vận hành, Admin. Đây là nhóm có quyền lực và mức độ quan tâm cao, cần được trao đổi và phối hợp thường xuyên.
+* Giữ sự hài lòng: Pháp chế, Kế toán/Tài chính. Nhóm có quyền lực tương đối cao nhưng không trực tiếp tham gia toàn bộ quy trình, cần đảm bảo yêu cầu được đáp ứng.
+* Cập nhật thông tin: Khách hàng, Tài xế, CSKH. Nhóm có mức độ quan tâm cao nhưng quyền quyết định thấp, cần được cung cấp thông tin và hỗ trợ thường xuyên.
+* Theo dõi tối thiểu: Nhà cung cấp thanh toán, Bản đồ/định vị, Dịch vụ thông báo. Chủ yếu cung cấp dịch vụ hỗ trợ bên ngoài, cần theo dõi tình trạng dịch vụ và xử lý khi có sự cố.
+## Minmap
 ```mermaid
 mindmap
-  root((CAB System<br/>Process Stakeholders))
-    Quyền lực cao & Quan tâm cao<br/>(Quản lý sát sao luồng quy trình)
+  root((CAB - Business Process))
+    Stakeholders
       Ban Giám đốc
-        Process Sponsor / Decision Maker
-        Định hướng mục tiêu & Phê duyệt phạm vi
-      Đội ngũ IT / DevOps
-        System Architect & Maintainer
-        Phát triển, triển khai và bảo mật hệ thống
-      Nhân viên vận hành (Operator)
-        Process Operator
-        Giám sát chuyến đi & Xử lý bất thường
-    Quyền lực cao & Quan tâm thấp<br/>(Giữ sự hài lòng)
-      Bộ phận Pháp chế / Cơ quan quản lý
-        Compliance Reviewer
-        Đảm bảo tuân thủ quy định pháp luật
-    Quyền lực thấp & Quan tâm cao<br/>(Cập nhật thông tin quy trình)
       Khách hàng
-        Process Consumer / End-User
-        Đặt xe, thanh toán và đánh giá
       Tài xế
-        Service Provider / Process Executor
-        Nhận cuốc, cập nhật vị trí, thực hiện chuyến
-      Quản trị viên (Admin)
-        Process Controller
-        Quản lý tài khoản và phân quyền hệ thống
-      Bộ phận Kế toán / Tài chính
-        Financial Controller
-        Quản lý giao dịch và đối soát doanh thu
-      Bộ phận CSKH
-        Support Service Owner
-        Xử lý khiếu nại và hỗ trợ sự cố
-    Quyền lực thấp & Quan tâm thấp<br/>(Theo dõi tối thiểu)
+      Nhân viên vận hành
+      Quản trị viên
+      Kế toán/Tài chính
+      CSKH
+      IT/DevOps
+      Pháp chế
       Nhà cung cấp thanh toán
-        External Integration Provider
-        Xử lý giao dịch điện tử
-      Nhà cung cấp bản đồ / định vị
-        External Data Provider
-        Cung cấp định tuyến và khoảng cách
-      Nhà cung cấp dịch vụ thông báo
-        External Communication Provider
-        Gửi thông báo đa kênh
+      Nhà cung cấp bản đồ/định vị
+      Nhà cung cấp thông báo
+
+    Business Process
+      Tiếp nhận yêu cầu đặt xe
+        Nhập điểm đón
+        Nhập điểm đến
+        Chọn loại xe
+        Gửi yêu cầu
+      Tìm và phân công tài xế
+        Xác định tài xế phù hợp
+        Gửi yêu cầu chuyến
+        Tài xế chấp nhận
+        Tài xế từ chối
+        Tìm tài xế khác
+      Thực hiện chuyến
+        Đến điểm đón
+        Đón khách
+        Đang thực hiện
+        Hoàn thành
+      Thanh toán
+        Tính cước
+        Chọn phương thức
+        Thực hiện thanh toán
+        Ghi nhận kết quả
+      Đánh giá
+        Khách hàng đánh giá
+        Ghi nhận đánh giá
+
+    Actors
+      Khách hàng
+      Tài xế
+      Hệ thống CAB
+      Nhân viên vận hành
+      Kế toán/Tài chính
+      Quản trị viên
+      Nhà cung cấp dịch vụ
+
+    Business Rules
+      Khách hàng phải có tài khoản
+      Tài xế phải sẵn sàng
+      Tài xế được chấp nhận hoặc từ chối
+      Từ chối thì tìm tài xế khác
+      Không bắt khách đặt lại
+      Không tìm được tài xế thì thông báo
+      Cập nhật trạng thái chuyến
+      Không lưu thông tin thanh toán nhạy cảm
+      Kiểm soát quyền quản trị
+      Lưu vết thao tác quan trọng
+
+    Task Analysis
+      Trigger
+      Input
+      Steps
+      Decision
+      Output
+      Business Rules
+      Exception
+
+    Open Issues
+      Công thức tính cước
+      Tiêu chí ưu tiên tài xế
+      Thời gian phản hồi
+      Chính sách hủy chuyến
+      Mất kết nối mạng
+      Thời gian lưu dữ liệu
+      Thanh toán thất bại
+
+    Requirements
+      Business Requirements
+        Đặt xe
+        Phân công tài xế
+        Theo dõi chuyến
+        Tính cước
+        Thanh toán
+        Đánh giá
+        Giám sát vận hành
+      Functional Requirements
+        Quản lý khách hàng
+        Quản lý tài xế
+        Điều phối chuyến
+        Theo dõi trạng thái
+        Quản lý thanh toán
+        Thông báo
+        Đánh giá
+        Báo cáo
+
+    Process Model
+      Start
+      Task
+      Decision
+      Flow
+      Exception
+      End
 ```
 
 ## 3. Business Purpose
@@ -111,108 +179,98 @@ mindmap
 
 ## 4. Xác định phạm vi 7 tuần
 ### a. Module Quản lý Khách hàng
-* **Quy trình Xác thực & Hồ sơ:** Hỗ trợ người dùng định danh (Đăng ký/Đăng nhập) và quản lý thông tin cá nhân.
-* **Quy trình Khởi tạo yêu cầu:** Cho phép người tiêu dùng quy trình chọn điểm đón/đến, chọn loại dịch vụ, nhận báo giá tự động và gửi yêu cầu đặt xe.
-* **Quy trình Theo dõi & Trải nghiệm:** Giám sát vị trí thời gian thực (GPS), tính toán thời gian đến dự kiến (ETA) và tra cứu lịch sử hành trình.
-* **Quy trình Đánh giá chất lượng:** Chấm điểm và gửi nhận xét dịch vụ sau khi kết thúc chuỗi giá trị.
-
+- **Quy trình Xác thực & Hồ sơ:** Hỗ trợ đăng ký, đăng nhập và quản lý thông tin cá nhân.
+- **Quy trình Khởi tạo yêu cầu:** Cho phép khách hàng nhập điểm đón, điểm đến, chọn loại dịch vụ và gửi yêu cầu đặt xe.
+- **Quy trình Theo dõi chuyến:** Cho phép khách hàng theo dõi trạng thái và thông tin chuyến đi.
+- **Quy trình Đánh giá dịch vụ:** Cho phép khách hàng đánh giá tài xế sau khi chuyến hoàn thành.
 ### b. Module Quản lý Tài xế và Phương tiện
-* **Quy trình Quản lý Hồ sơ & Tài nguyên:** Tiếp nhận, kiểm duyệt và cập nhật thông tin tài xế cùng phương tiện vận tải (do Tài xế hoặc Operator thực hiện).
-* **Quy trình Kiểm soát Trạng thái & Định vị:** Quản lý trạng thái sẵn sàng phục vụ, tự động thu thập và đồng bộ tọa độ GPS thời gian thực về hệ thống điều phối.
-* **Quy trình Thực thi dịch vụ:** Tiếp nhận/Từ chối cuốc xe và cập nhật tuần tự các mốc tiến trình nghiệp vụ 
-
+- **Quy trình Quản lý Hồ sơ:** Tiếp nhận và cập nhật thông tin tài xế, phương tiện.
+- **Quy trình Quản lý Trạng thái & Vị trí:** Cập nhật trạng thái sẵn sàng của tài xế và thông tin vị trí phục vụ điều phối.
+- **Quy trình Thực hiện chuyến:** Tài xế nhận hoặc từ chối chuyến và cập nhật trạng thái trong quá trình thực hiện.
 ### c. Module Tính cước và Thanh toán
-* **Quy trình Tính cước tự động:** Áp dụng biểu phí linh hoạt dựa trên loại dịch vụ và thông tin tọa độ/khoảng cách tuyến đường.
-* **Quy trình Tích hợp cổng thanh toán:** Kết nối an toàn với các đơn vị thanh toán ngoài để xử lý giao dịch điện tử mà không lưu trữ dữ liệu nhạy cảm.
-* **Quy trình Đối soát & Xử lý ngoại lệ:** Hỗ trợ thanh toán tiền mặt/điện tử; ghi nhận, thông báo và cho phép xử lý lại giao dịch khi xảy ra lỗi thanh toán.
-
-### d. Module Thông báo Đa kênh
-* **Quy trình Phát thông báo Khách hàng:** Tự động gửi thông tin cập nhật theo các mốc: tiếp nhận đơn, có tài xế nhận, tài xế đến điểm đón, kết thúc chuyến và trạng thái thanh toán.
-* **Quy trình Phát thông báo Tài xế:** Cung cấp thông tin điều phối cuốc xe mới hoặc các thay đổi khẩn cấp trong hành trình.
-
+- **Quy trình Tính cước:** Xác định số tiền khách hàng phải thanh toán dựa trên thông tin chuyến và loại dịch vụ.
+- **Quy trình Thanh toán:** Hỗ trợ thanh toán bằng tiền mặt hoặc phương thức điện tử.
+- **Quy trình Ghi nhận & Xử lý thanh toán:** Ghi nhận kết quả giao dịch, thông báo khi thanh toán thất bại và hỗ trợ xử lý lại theo chính sách.
+### d. Module Thông báo
+- **Quy trình Thông báo Khách hàng:** Gửi thông tin về yêu cầu đặt xe, trạng thái tài xế, chuyến đi và thanh toán.
+- **Quy trình Thông báo Tài xế:** Gửi thông tin chuyến xe và các thay đổi liên quan đến chuyến.
 ### e. Module Vận hành, Quản trị & Báo cáo
-* **Quy trình Giám sát vận hành:** Bảng điều khiển trực quan giúp Operator theo dõi các chuyến đi đang thực thi, kiểm soát trạng thái tài xế, xử lý ngoại lệ và tra cứu lịch sử giao dịch.
-* **Quy trình Kiểm soát hệ thống):** Quản lý tài khoản, thiết lập phân quyền truy cập nghiêm ngặt theo vai trò để bảo vệ dữ liệu nhạy cảm.
-* **Quy trình Đo lường hiệu suất:** Tổng hợp dữ liệu về tổng số chuyến, doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy chuyến và đánh giá hiệu quả hoạt động của tài xế.
-
-## 4. Chuyển các yêu cầu thành yêu cầu nghiệp vụ
-### a. Yêu cầu Quản lý Khách hàng 
-* **BRa01:** Hệ thống phải cung cấp cổng định danh an toàn để người dùng thực hiện quy trình đăng ký, đăng nhập và bảo mật thông tin cá nhân.
-* **BRa02:** Quy trình đặt xe phải cho phép khách hàng nhập điểm đi/đến, chọn loại dịch vụ, xem trước biểu phí tự động và gửi yêu cầu khởi tạo chuyến đi.
-* **BRa03:** Hệ thống phải hỗ trợ luồng theo dõi hành trình trực tuyến , hiển thị chính xác vị trí tài xế và thời gian đến dự kiến trên giao diện khách hàng.
-* **BRa04:** Sau khi hoàn thành chuỗi giá trị dịch vụ, hệ thống phải cung cấp vòng lặp phản hồi (Feedback Loop) cho phép khách hàng chấm điểm và đánh giá chất lượng tài xế.
-
+- **Quy trình Giám sát vận hành:** Theo dõi chuyến đi, trạng thái tài xế và xử lý các trường hợp bất thường.
+- **Quy trình Quản trị hệ thống:** Quản lý tài khoản, phân quyền và kiểm soát quyền truy cập.
+- **Quy trình Quản lý giao dịch:** Tra cứu và theo dõi thông tin giao dịch.
+- **Quy trình Báo cáo:** Tổng hợp dữ liệu về chuyến đi, giao dịch và doanh thu phục vụ quản lý.
+## 5. Chuyển các yêu cầu thành yêu cầu nghiệp vụ
+### a. Yêu cầu Quản lý Khách hàng
+- **BRa01:** Cho phép khách hàng đăng ký, đăng nhập và quản lý thông tin cá nhân để sử dụng dịch vụ.
+- **BRa02:** Cho phép khách hàng nhập điểm đón, điểm đến, chọn loại dịch vụ và gửi yêu cầu đặt xe.
+- **BRa03:** Cung cấp khả năng theo dõi trạng thái và thông tin chuyến đi trong quá trình sử dụng dịch vụ.
+- **BRa04:** Thu thập đánh giá của khách hàng về tài xế sau khi chuyến đi hoàn thành.
 ### b. Yêu cầu Quản lý Tài xế và Phương tiện
-* **BRb01:** Quy trình tiếp nhận tài nguyên phải cho phép Tài xế hoặc Nhân viên vận hành (Operator) tạo, cập nhật hồ sơ cá nhân và thông tin phương tiện, kèm theo bước kiểm duyệt trước khi kích hoạt tài khoản.
-* **BRb02:** Hệ thống phải duy trì luồng đồng bộ trạng thái trực tuyến (Online/Offline) và tự động thu thập tọa độ GPS định kỳ từ thiết bị của tài xế để phục vụ công tác điều phối.
-* **BRb03:** Quy trình thực thi chuyến đi phải hỗ trợ tài xế tiếp nhận/từ chối cuốc xe và cập nhật tuần tự các mốc trạng thái nghiệp vụ 
-
+- **BRb01:** Quản lý thông tin tài xế và phương tiện phục vụ hoạt động cung cấp dịch vụ.
+- **BRb02:** Quản lý trạng thái và vị trí của tài xế để phục vụ việc tìm kiếm và phân công chuyến.
+- **BRb03:** Cho phép tài xế tiếp nhận hoặc từ chối chuyến và cập nhật trạng thái trong quá trình thực hiện chuyến.
 ### c. Yêu cầu Tính cước và Thanh toán
-* **BRc01:** Hệ thống phải tự động tính toán giá cước dựa trên công thức cấu thành từ loại dịch vụ, khoảng cách định tuyến thực tế và các hệ số điều chỉnh theo thời điểm.
-* **BRc02:** Quy trình thanh toán điện tử phải được tích hợp thông qua các nhà cung cấp cổng thanh toán độc lập bên ngoài, đảm bảo không lưu trữ trực tiếp dữ liệu thẻ nhạy cảm trong hệ thống nội bộ.
-* **BRc03:** Hệ thống phải xử lý linh hoạt cả hai hình thức thanh toán (Tiền mặt / Điện tử); đồng thời cung cấp cơ chế ghi nhận, thông báo lỗi và quy trình xử lý ngoại lệ khi giao dịch thanh toán thất bại.
-
-### d. Yêu cầu Thông báo Đa kênh
-* **BRd01:** Quy trình thông báo cho khách hàng phải tự động kích hoạt gửi tin cập nhật theo các mốc: hệ thống nhận đơn, tài xế tiếp nhận, tài xế đến điểm đón, kết thúc chuyến và trạng thái thanh toán.
-* **BRd02:** Quy trình thông báo cho tài xế phải đảm bảo truyền tải thông tin điều phối cuốc xe mới hoặc các thay đổi khẩn cấp về hành trình một cách tức thời.
-
+- **BRc01:** Xác định số tiền khách hàng phải thanh toán dựa trên loại dịch vụ và thông tin chuyến đi.
+- **BRc02:** Cần hỗ trợ thanh toán bằng tiền mặt và phương thức thanh toán điện tử thông qua nhà cung cấp dịch vụ thanh toán.
+- **BRc03:** Cần ghi nhận kết quả thanh toán, thông báo khi giao dịch thất bại và hỗ trợ xử lý lại theo chính sách của doanh nghiệp.
+### d. Yêu cầu Thông báo
+- **BRd01:** Cung cấp thông tin cập nhật cho khách hàng trong các giai đoạn chính của quá trình đặt và thực hiện chuyến.
+- **BRd02:** Cung cấp thông tin chuyến xe và các thay đổi liên quan cho tài xế để hỗ trợ quá trình điều phối và thực hiện chuyến.
 ### e. Yêu cầu Vận hành, Quản trị & Báo cáo
-* **BRe01:** Hệ thống phải cung cấp giao diện Cổng thông tin vận hành (Operator Portal) giúp nhân viên giám sát các chuyến đi đang thực thi, theo dõi trạng thái tài xế và xử lý các sự cố phát sinh.
-* **BRe02:** Quản trị viên (Admin) phải được cung cấp công cụ phân quyền truy cập nghiêm ngặt theo vai trò (RBAC) nhằm bảo mật các cấu hình hệ thống và dữ liệu nhạy cảm.
-* **BRe03:** Hệ thống phải tích hợp module báo cáo tự động tổng hợp các chỉ số hiệu suất chính (KPIs) như tổng số chuyến đi, tổng doanh thu, tỷ lệ hoàn thành, tỷ lệ hủy chuyến và hiệu quả hoạt động của tài xế.
-
+- **BRe01:** Giám sát các chuyến đi, trạng thái tài xế và xử lý các trường hợp bất thường trong quá trình vận hành.
+- **BRe02:** Quản lý tài khoản và phân quyền truy cập theo vai trò để bảo vệ dữ liệu và chức năng của hệ thống.
+- **BRe03:** Tổng hợp và cung cấp báo cáo về hoạt động chuyến đi, giao dịch và doanh thu để phục vụ công tác quản lý.
 ## 6. Phân rã yêu cầu chức năng
 ### a. Quản lý Tài khoản
-* **FRa01:** Hệ thống cung cấp chức năng đăng ký tài khoản phân tách rõ theo vai trò: Khách hàng, Tài xế và Quản trị viên.
-* **FRa02:** Hệ thống cung cấp cơ chế đăng nhập bảo mật kèm tính năng khôi phục mật khẩu qua mã OTP.
-* **FRa03:** Hệ thống cho phép người dùng xem và cập nhật thông tin hồ sơ cá nhân (Ảnh đại diện, số điện thoại, thông tin liên lạc).
-* **FRa04:** Quản trị viên thực hiện chức năng phân quyền truy cập hệ thống theo mô hình RBAC đối với các nhân viên vận hành và kế toán.
-
-### b. Đặt xe 
-* **FRb01:** Khách hàng chọn điểm đón và điểm đến trên bản đồ, hệ thống tự động xác định tọa độ và hiển thị tuyến đường sơ bộ.
-* **FRb02:** Hệ thống tính toán và hiển thị danh sách các loại hình dịch vụ kèm theo giá cước ước tính trước khi khách hàng xác nhận đặt xe.
-* **FRb03:** Hệ thống thực thi thuật toán tự động tìm kiếm, quét và phân công cuốc xe cho tài xế phù hợp đang ở trạng thái sẵn sàng trong khu vực lân cận.
-* **FRb04:** Tài xế nhận được thông báo yêu cầu cuốc xe, có quyền thực hiện hành động **Nhận chuyến** hoặc **Từ chối chuyến** trong thời gian quy định.
-
+- **FRa01:** Người dùng đăng ký tài khoản theo từng loại người dùng được hỗ trợ.
+- **FRa02:** Người dùng đăng nhập và khôi phục quyền truy cập tài khoản khi cần.
+- **FRa03:** Người dùng xem và cập nhật thông tin hồ sơ cá nhân.
+- **FRa04:** Quản trị viên quản lý tài khoản và quyền truy cập của người dùng theo vai trò.
+### b. Đặt xe
+- **FRb01:** Khách hàng nhập điểm đón, điểm đến và lựa chọn loại dịch vụ khi tạo yêu cầu đặt xe.
+- **FRb02:** Hệ thống tiếp nhận và ghi nhận yêu cầu đặt xe của khách hàng.
+- **FRb03:** Hệ thống tìm kiếm và đề xuất tài xế phù hợp đang sẵn sàng để thực hiện chuyến.
+- **FRb04:** Hệ thống gửi yêu cầu chuyến đến tài xế và cho phép tài xế thực hiện hành động Nhận chuyến hoặc Từ chối chuyến.
+- **FRb05:** Khi tài xế từ chối hoặc không nhận chuyến, hệ thống tiếp tục tìm tài xế phù hợp khác.
+- **FRb06:** Khi không tìm được tài xế phù hợp, hệ thống thông báo kết quả cho khách hàng.
 ### c. Chuyến đi & Định vị
-* **FRc01:** Thiết bị của tài xế gửi tọa độ GPS định kỳ về hệ thống để cập nhật vị trí thời gian thực.
-* **FRc02:** Giao diện khách hàng và vận hành hiển thị trực quan bản đồ hành trình di chuyển của tài xế cùng thời gian dự kiến đến
-* **FRc03:** Tài xế thao tác cập nhật tiến trình chuyến đi qua các mốc trạng thái chuẩn: *Đã đến điểm đón $\rightarrow$ Đã đón khách $\rightarrow$ Đang di chuyển $\rightarrow$ Hoàn thành chuyến đi*.
-* **FRc04:** Hệ thống cung cấp cơ chế cho phép hủy chuyến đi có điều kiện.
-
+- **FRc01:** Hệ thống tiếp nhận và cập nhật thông tin vị trí của tài xế phục vụ việc theo dõi và điều phối chuyến.
+- **FRc02:** Hệ thống hiển thị thông tin và trạng thái chuyến đi cho khách hàng và bộ phận vận hành.
+- **FRc03:** Hệ thống cho phép tài xế cập nhật trạng thái chuyến theo từng giai đoạn thực hiện.
+- **FRc04:** Hệ thống hỗ trợ hủy chuyến theo các điều kiện và chính sách được doanh nghiệp quy định.
+- **FRc05:** Hệ thống lưu lại lịch sử và trạng thái của chuyến đi.
 ### d. Tính cước & Thanh toán
-* **FRd01:** Hệ thống tự động tính toán tổng số tiền cước dựa trên biểu phí cấu hình sẵn (giá mở cửa, giá theo quãng đường, hệ số giờ cao điểm/thời tiết).
-* **FRd02:** Hệ thống hỗ trợ phương thức thanh toán tiền mặt và tích hợp cổng thanh toán điện tử của bên thứ ba để xử lý giao dịch thẻ/ví điện tử.
-* **FRd03:** Ghi nhận và lưu trữ trạng thái thanh toán của từng chuyến đi (Đã thanh toán / Chưa thanh toán / Lỗi giao dịch).
-* **FRd04:** Cung cấp tính năng thông báo lỗi giao dịch và cho phép thực hiện quy trình xử lý thanh toán lại (Retry payment) khi có sự cố.
-
+- **FRd01:** Hệ thống xác định số tiền khách hàng phải thanh toán dựa trên loại dịch vụ và thông tin chuyến đi.
+- **FRd02:** Hệ thống hỗ trợ thanh toán bằng tiền mặt và phương thức thanh toán điện tử thông qua nhà cung cấp dịch vụ thanh toán.
+- **FRd03:** Hệ thống ghi nhận trạng thái thanh toán của từng chuyến đi.
+- **FRd04:** Hệ thống thông báo kết quả thanh toán cho khách hàng.
+- **FRd05:** Khi giao dịch thanh toán điện tử thất bại, hệ thống thông báo lỗi và hỗ trợ thực hiện lại giao dịch theo chính sách của doanh nghiệp.
 ### e. Thông báo & Phản hồi
-* **FRe01:** Hệ thống tự động đẩy thông báo (Push Notification / SMS) tới khách hàng theo các mốc: Đã nhận đơn, có tài xế nhận, tài xế đến nơi, kết thúc chuyến và kết quả thanh toán.
-* **FRe02:** Hệ thống gửi thông báo điều phối cuốc xe mới hoặc các tin nhắn khẩn cấp tới ứng dụng của tài xế.
-* **FRe01:** Sau khi hoàn thành chuyến đi, hệ thống kích hoạt tính năng đánh giá sao (1-5 sao) và gửi nhận xét từ khách hàng dành cho tài xế.
-
+- **FRe01:** Hệ thống gửi thông báo cho khách hàng về các trạng thái chính của yêu cầu và chuyến đi.
+- **FRe02:** Hệ thống gửi thông báo cho tài xế về yêu cầu chuyến và các thay đổi liên quan đến chuyến.
+- **FRe03:** Khách hàng đánh giá tài xế sau khi chuyến đi hoàn thành.
+- **FRe04:** Hệ thống ghi nhận và lưu trữ kết quả đánh giá của khách hàng.
 ### f. Vận hành, Quản trị & Báo cáo
-* **FRf01:** Giao diện Cổng thông tin vận hành (Operator Portal) hiển thị màn hình giám sát toàn bộ các chuyến đi đang diễn ra và trạng thái trực tuyến của tài xế.
-* **FRf02:** Nhân viên vận hành có quyền can thiệp thủ công để hỗ trợ xử lý các ngoại lệ (ví dụ: đổi tài xế, hủy chuyến hộ, giải quyết khiếu nại).
-* **FRf03:** Hệ thống tự động tổng hợp dữ liệu và xuất báo cáo thống kê trực quan về tổng số chuyến, tổng doanh thu, tỷ lệ hoàn thành và hiệu suất hoạt động.
+- **FRf01:** Hệ thống cung cấp giao diện để Nhân viên vận hành theo dõi các chuyến đi và trạng thái tài xế.
+- **FRf02:** Nhân viên vận hành xử lý các trường hợp bất thường trong quá trình thực hiện chuyến.
+- **FRf03:** Nhân viên vận hành tra cứu thông tin chuyến đi và giao dịch.
+- **FRf04:** Quản trị viên quản lý tài khoản, quyền truy cập.
+- **FRf05:** Hệ thống tổng hợp dữ liệu chuyến đi, giao dịch và doanh thu để phục vụ công tác báo cáo.
   ## 7. Vẽ usecase
+  <img width="1200" height="544" alt="Use Case Diagram1" src="https://github.com/user-attachments/assets/f6459e3b-6e60-4dfb-a489-65f787b0aa00" />
   ## 8. Đặc tả usecase
   ## 9. Phân tích quy trình nghiệp vụ
 1. **Giai đoạn Khởi tạo & Tiếp nhận:** 
    - Khách hàng thực hiện định danh tài khoản, nhập lộ trình điểm đón và điểm đến. 
    - Hệ thống tự động tính cước dựa trên loại hình dịch vụ và tiếp nhận yêu cầu đặt xe.
-
 2. **Giai đoạn Điều phối & Ghép nối:** 
    - Thuật toán quét và lọc tài xế đang ở trạng thái trực tuyến (Online) dựa trên tọa độ GPS. 
    - Hệ thống tự động gửi tín hiệu điều phối đến tài xế ưu tiên ở vị trí gần nhất.
-
 3. **Giai đoạn Thực thi Dịch vụ:** 
    - Tài xế di chuyển thực hiện cuốc xe và liên tục cập nhật tuần tự các mốc trạng thái nghiệp vụ về trung tâm
-
 4. **Giai đoạn Thanh toán & Đánh giá:** 
    - Hệ thống chốt cước phí dựa trên lộ trình thực tế, xử lý thanh toán linh hoạt (tiền mặt hoặc cổng điện tử bên ngoài). 
    - Sau khi hoàn tất thanh toán, hệ thống kích hoạt vòng lặp phản hồi để khách hàng đánh giá sao cho tài xế.
-
 5. **Giai đoạn Giám sát Vận hành:** 
    - Nhân viên vận hành theo dõi trực tuyến qua Dashboard để can thiệp xử lý ngoại lệ (hủy chuyến, đổi tài xế, khiếu nại). 
    - Hệ thống tự động tổng hợp báo cáo hiệu suất để phục vụ công tác quản trị và ra quyết định của ban lãnh đạo.
