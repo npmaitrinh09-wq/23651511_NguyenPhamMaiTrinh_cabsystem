@@ -257,8 +257,537 @@ mindmap
 - **FRf04:** Quản trị viên quản lý tài khoản, quyền truy cập.
 - **FRf05:** Hệ thống tổng hợp dữ liệu chuyến đi, giao dịch và doanh thu để phục vụ công tác báo cáo.
   ## 7. Vẽ usecase
-  <img width="1200" height="544" alt="Use Case Diagram1" src="https://github.com/user-attachments/assets/f6459e3b-6e60-4dfb-a489-65f787b0aa00" />
+<img width="1200" height="694" alt="Use Case Diagram1" src="https://github.com/user-attachments/assets/dc9a904c-1b87-4c71-9754-3cb531bd1af5" />
   ## 8. Đặc tả usecase
+### UC01 – Đăng ký tài khoản
+* Actor chính: Người dùng (Khách hàng, Tài xế)
+* Actor phụ : Hệ thống
+* Mục tiêu : Tạo tài khoản để sử dụng dịch vụ đặt xe
+* Tiền điều kiện : Người dùng chưa có tài khoản.
+* Hậu điều kiện : Tài khoản Người dùng được tạo thành công.
+
+**Luồng chính:**
+| Người dùng | Hệ thống |
+|---|---|
+| 1. Người dùng chọn chức năng **Đăng ký tài khoản** | 2. Hệ thống hiển thị biểu mẫu đăng ký. |
+| 3. Người dùng nhập thông tin cá nhân. | |
+| 4. Người dùng gửi yêu cầu đăng ký]. | 5. Hệ thống kiểm tra tính hợp lệ của thông tin. |
+| | 6. Hệ thống kiểm tra tài khoản đã tồn tại hay chưa. |
+| | 7. Hệ thống tạo tài khoản |
+| | 8. Hệ thống thông báo đăng ký thành công. |
+
+**Luồng thay thế/ngoại lệ:**
+- **5a.** Thông tin không hợp lệ → Hệ thống yêu cầu nhập lại.
+- **6a.** Tài khoản đã tồn tại → Hệ thống thông báo và yêu cầu sử dụng thông tin khác.
+- **7a.** Lỗi hệ thống → Không tạo được tài khoản.
+
+### UC02 – Đăng nhập
+* Actor chính: Người dùng (Khách hàng, Tài xế, Nhân viên vận hành, Quản trị viên)
+* Actor phụ : Hệ thống
+* Mục tiêu : Xác thực người dùng trước khi sử dụng các chức năng yêu cầu tài khoản.
+* Tiền điều kiện : Người dùng đã có tài khoản.
+* Hậu điều kiện : Người dùng đăng nhập thành công.
+
+**Luồng chính:**
+| Người dùng | Hệ thống |
+|---|---|
+| 1. Người dùng chọn **Đăng nhập** | 2. Hệ thống hiển thị biểu mẫu đăng nhập. |
+| 3. Người dùng nhập thông tin đăng nhập. | |
+| 4. Người dùng gửi yêu cầu. | 5. Hệ thống kiểm tra thông tin. |
+| | 6. Hệ thống xác thực tài khoản. |
+| | 7. Hệ thống cho phép người dùng truy cập. |
+
+**Luồng thay thế/ngoại lệ:**
+- **5a.** Sai thông tin đăng nhập → Hệ thống thông báo lỗi.
+- **6a.** Tài khoản không hợp lệ/bị khóa → Hệ thống từ chối đăng nhập.
+
+
+### UC03 – Quản lý hồ sơ
+* Actor chính: Người dùng (Khách hàng, Tài xế)
+* Actor phụ : Hệ thống
+* Mục tiêu : Cho phép người dùng cập nhật thông tin cá nhân.
+* Tiền điều kiện : Người dùng đã đăng nhập vào hệ thống.
+* Hậu điều kiện : Thông tin cá nhân được cập nhật thành công.
+
+**Luồng chính:**
+| Người dùng | Hệ thống |
+|---|---|
+| 1. Người dùng chọn mục **Hồ sơ cá nhân**. | 2. Hệ thống hiển thị thông tin hiện tại của người dùng. |
+| 3. Người dùng chọn chỉnh sửa. | |
+| 4. Người dùng cập nhật thông tin mới. | |
+| 5. Người dùng xác nhận lưu thay đổi. | 6. Hệ thống kiểm tra tính hợp lệ của thông tin. |
+| | 7. Hệ thống lưu thông tin mới vào cơ sở dữ liệu |
+| | 8. Hệ thống thông báo cập nhật thành công. |
+
+**Luồng thay thế/ngoại lệ:**
+- **6a.** Thông tin không hợp lệ → Hệ thống yêu cầu người dùng nhập lại.
+- **7a.** Lỗi lưu dữ liệu → Hệ thống thông báo cập nhật thất bại và yêu cầu thử lại.
+
+
+
+## 1. Khách hàng
+
+### UC04 – Đặt xe
+* Actor chính: Khách hàng[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép khách hàng tạo yêu cầu đặt xe[cite: 1].
+* Tiền điều kiện : Khách hàng đã đăng nhập[cite: 1].
+* Hậu điều kiện : Yêu cầu đặt xe được tạo và hệ thống bắt đầu tìm tài xế[cite: 1].
+
+**Luồng chính:**
+| Khách hàng | Hệ thống |
+|---|---|
+| 1. Khách hàng chọn chức năng **Đặt xe**[cite: 1]. | 2. Hệ thống hiển thị giao diện đặt xe[cite: 1]. |
+| 3. Khách hàng nhập điểm đón[cite: 1]. | |
+| 4. Khách hàng nhập điểm đến[cite: 1]. | |
+| 5. Khách hàng lựa chọn loại xe[cite: 1]. | 6. Hệ thống kiểm tra thông tin chuyến[cite: 1]. |
+| 7. Khách hàng xác nhận yêu cầu đặt xe[cite: 1]. | 8. Hệ thống tiếp nhận yêu cầu[cite: 1]. |
+| | 9. Hệ thống bắt đầu tìm tài xế phù hợp[cite: 1]. |
+| | 10. Hệ thống thông báo trạng thái tìm tài xế cho khách hàng[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- **3a.** Điểm đón không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+- **4a.** Điểm đến không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+- **5a.** Loại xe không khả dụng → Hệ thống yêu cầu lựa chọn loại xe khác[cite: 1].
+- **9a.** Không tìm được tài xế → Hệ thống thông báo rõ ràng cho khách hàng[cite: 1].
+
+---
+
+### UC05 – Theo dõi chuyến đi
+* Actor chính: Khách hàng[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép khách hàng theo dõi trạng thái chuyến và tài xế[cite: 1].
+* Tiền điều kiện : Khách hàng đã tạo yêu cầu đặt xe[cite: 1].
+* Hậu điều kiện : Thông tin trạng thái chuyến được hiển thị[cite: 1].
+
+**Luồng chính:**
+| Khách hàng | Hệ thống |
+|---|---|
+| 1. Khách hàng mở thông tin chuyến[cite: 1]. | 2. Hệ thống hiển thị trạng thái tìm tài xế[cite: 1]. |
+| | 3. Khi tài xế nhận chuyến, hệ thống hiển thị thông tin tài xế[cite: 1]. |
+| | 4. Hệ thống hiển thị thời gian dự kiến tài xế đến[cite: 1]. |
+| | 5. Khi tài xế đến điểm đón, hệ thống cập nhật trạng thái[cite: 1]. |
+| | 6. Hệ thống tiếp tục cập nhật trạng thái trong quá trình thực hiện chuyến[cite: 1]. |
+| | 7. Khi chuyến hoàn thành, hệ thống thông báo trạng thái hoàn thành[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- **3a.** Chưa có tài xế nhận chuyến → Hệ thống tiếp tục hiển thị trạng thái tìm tài xế[cite: 1].
+- **4a.** Không xác định được thời gian dự kiến → Hệ thống thông báo dữ liệu chưa khả dụng[cite: 1].
+
+---
+
+### UC06 – Xem lịch sử chuyến đi
+* Actor chính: Khách hàng[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Xem lại các chuyến đã thực hiện[cite: 1].
+* Tiền điều kiện : Khách hàng đã đăng nhập[cite: 1].
+* Hậu điều kiện : Lịch sử chuyến được hiển thị[cite: 1].
+
+**Luồng chính:**
+| Khách hàng | Hệ thống |
+|---|---|
+| 1. Khách hàng chọn **Lịch sử chuyến đi**[cite: 1]. | 2. Hệ thống truy xuất lịch sử[cite: 1]. |
+| | 3. Hệ thống hiển thị danh sách chuyến[cite: 1]. |
+| 4. Khách hàng chọn một chuyến[cite: 1]. | 5. Hệ thống hiển thị chi tiết chuyến[cite: 1]. |
+| | 6. Hệ thống hiển thị số tiền phải trả[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- **2a.** Không có chuyến → Hệ thống thông báo chưa có lịch sử[cite: 1].
+- **2b.** Lỗi truy xuất dữ liệu → Hệ thống thông báo không thể tải dữ liệu[cite: 1].
+
+---
+
+### UC07 – Thanh toán
+* Actor chính: Khách hàng[cite: 1]
+* Actor phụ : Hệ thống, Nhà cung cấp thanh toán bên ngoài[cite: 1]
+* Mục tiêu : Thanh toán chi phí chuyến đi[cite: 1].
+* Tiền điều kiện : Chuyến đi đã hoàn thành và hệ thống xác định được số tiền phải trả[cite: 1].
+* Hậu điều kiện : Kết quả thanh toán được ghi nhận[cite: 1].
+
+**Luồng chính:**
+| Khách hàng | Hệ thống |
+|---|---|
+| | 1. Chuyến đi được hoàn thành[cite: 1]. |
+| | 2. Hệ thống xác định số tiền khách hàng phải trả[cite: 1]. |
+| 3. Khách hàng chọn phương thức thanh toán[cite: 1]. | |
+| | 4. Nếu chọn tiền mặt → Hệ thống ghi nhận thanh toán tiền mặt[cite: 1]. |
+| | 5. Nếu chọn thanh toán điện tử → Hệ thống gửi yêu cầu đến nhà cung cấp thanh toán[cite: 1]. |
+| | 6. Nhà cung cấp xử lý giao dịch[cite: 1]. |
+| | 7. Nhà cung cấp trả kết quả cho hệ thống[cite: 1]. |
+| | 8. Hệ thống cập nhật trạng thái thanh toán[cite: 1]. |
+| | 9. Hệ thống thông báo kết quả cho khách hàng[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- **5a.** Thanh toán điện tử thất bại → Hệ thống thông báo cho khách hàng[cite: 1].
+- **5b.** Khách hàng thực hiện lại thanh toán theo chính sách của doanh nghiệp[cite: 1].
+- **7a.** Không nhận được kết quả → Hệ thống xử lý theo cơ chế của doanh nghiệp[cite: 1].
+
+---
+
+### UC08 – Đánh giá tài xế
+* Actor chính: Khách hàng[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép khách hàng đánh giá tài xế sau chuyến đi[cite: 1].
+* Tiền điều kiện : Chuyến đi đã hoàn thành[cite: 1].
+* Hậu điều kiện : Đánh giá được lưu vào hệ thống[cite: 1].
+
+**Luồng chính:**
+| Khách hàng | Hệ thống |
+|---|---|
+| 1. Khách hàng mở chuyến đã hoàn thành[cite: 1]. | 2. Hệ thống hiển thị chức năng đánh giá[cite: 1]. |
+| 3. Khách hàng thực hiện đánh giá tài xế[cite: 1]. | |
+| 4. Khách hàng gửi đánh giá[cite: 1]. | 5. Hệ thống kiểm tra thông tin[cite: 1]. |
+| | 6. Hệ thống lưu đánh giá[cite: 1]. |
+| | 7. Hệ thống thông báo đánh giá thành công[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- **1a.** Chuyến chưa hoàn thành → Hệ thống không cho phép đánh giá[cite: 1].
+- **5a.** Thông tin đánh giá không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+
+---
+
+# 2. TÀI XẾ
+
+### UC09 – Quản lý phương tiện (Tài xế)
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép tài xế quản lý thông tin phương tiện của mình[cite: 1].
+* Tiền điều kiện : Tài xế đã đăng nhập[cite: 1].
+* Hậu điều kiện : Thông tin phương tiện được cập nhật[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| 1. Tài xế chọn **Quản lý phương tiện**[cite: 1]. | 2. Hệ thống hiển thị thông tin phương tiện[cite: 1]. |
+| 3. Tài xế thêm hoặc cập nhật thông tin[cite: 1]. | |
+| 4. Tài xế xác nhận[cite: 1]. | 5. Hệ thống kiểm tra[cite: 1]. |
+| | 6. Hệ thống lưu thông tin[cite: 1]. |
+| | 7. Hệ thống thông báo thành công[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Thông tin không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+- Phương tiện không đáp ứng yêu cầu → Hệ thống thông báo[cite: 1].
+
+---
+
+### UC10 – Cập nhật trạng thái hoạt động
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép tài xế chuyển sang trạng thái sẵn sàng nhận chuyến[cite: 1].
+* Tiền điều kiện : Tài xế đã đăng nhập và đang làm việc[cite: 1].
+* Hậu điều kiện : Trạng thái hoạt động được cập nhật[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| 1. Tài xế mở trạng thái hoạt động[cite: 1]. | 2. Hệ thống hiển thị trạng thái hiện tại[cite: 1]. |
+| 3. Tài xế chọn **Sẵn sàng nhận chuyến**[cite: 1]. | 4. Hệ thống cập nhật trạng thái[cite: 1]. |
+| | 5. Hệ thống đưa tài xế vào danh sách có thể nhận chuyến[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Tài xế không đủ điều kiện hoạt động → Hệ thống không cho phép chuyển trạng thái[cite: 1].
+
+---
+
+### UC11 – Cập nhật vị trí
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Lưu vị trí tài xế để hỗ trợ tìm tài xế và dự kiến thời gian đến[cite: 1].
+* Tiền điều kiện : Tài xế đã đăng nhập và cho phép hệ thống truy cập vị trí[cite: 1].
+* Hậu điều kiện : Vị trí tài xế được cập nhật[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| | 1. Hệ thống yêu cầu quyền truy cập vị trí[cite: 1]. |
+| 2. Tài xế cho phép truy cập[cite: 1]. | |
+| | 3. Hệ thống lấy vị trí hiện tại[cite: 1]. |
+| | 4. Hệ thống lưu/cập nhật vị trí[cite: 1]. |
+| | 5. Hệ thống sử dụng vị trí để hỗ trợ tìm tài xế phù hợp[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Không được cấp quyền vị trí → Hệ thống không thể cập nhật vị trí[cite: 1].
+- Không xác định được vị trí → Hệ thống thông báo lỗi[cite: 1].
+
+---
+
+### UC12 – Nhận chuyến
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép tài xế nhận yêu cầu chuyến phù hợp[cite: 1].
+* Tiền điều kiện : Tài xế đang ở trạng thái sẵn sàng nhận chuyến[cite: 1].
+* Hậu điều kiện : Chuyến được gán cho tài xế[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| | 1. Hệ thống xác định chuyến phù hợp[cite: 1]. |
+| | 2. Hệ thống gửi thông báo chuyến mới cho tài xế[cite: 1]. |
+| 3. Tài xế xem thông tin chuyến[cite: 1]. | |
+| 4. Tài xế chọn **Chấp nhận**[cite: 1]. | 5. Hệ thống kiểm tra chuyến[cite: 1]. |
+| | 6. Hệ thống gán chuyến cho tài xế[cite: 1]. |
+| | 7. Hệ thống cập nhật trạng thái chuyến[cite: 1]. |
+| | 8. Hệ thống thông báo cho khách hàng[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Chuyến đã được tài xế khác nhận → Hệ thống thông báo không còn khả dụng[cite: 1].
+- Hết thời gian phản hồi → Hệ thống xử lý như không nhận chuyến[cite: 1].
+
+---
+
+### UC13 – Từ chối chuyến
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cho phép tài xế từ chối chuyến được đề xuất[cite: 1].
+* Tiền điều kiện : Tài xế nhận được yêu cầu chuyến[cite: 1].
+* Hậu điều kiện : Chuyến được trả lại cho cơ chế tìm tài xế[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| | 1. Hệ thống gửi thông báo chuyến mới[cite: 1]. |
+| 2. Tài xế xem thông tin[cite: 1]. | |
+| 3. Tài xế chọn **Từ chối**[cite: 1]. | 4. Hệ thống ghi nhận kết quả[cite: 1]. |
+| | 5. Hệ thống tiếp tục tìm tài xế phù hợp khác[cite: 1]. |
+| | 6. Khách hàng không cần tạo lại yêu cầu[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Không có tài xế khác phù hợp → Hệ thống thông báo cho khách hàng[cite: 1].
+
+---
+
+### UC14 – Cập nhật trạng thái chuyến
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Cập nhật tiến trình thực hiện chuyến[cite: 1].
+* Tiền điều kiện : Tài xế đã nhận chuyến[cite: 1].
+* Hậu điều kiện : Trạng thái chuyến được cập nhật và khách hàng nhận được thông tin[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| 1. Tài xế nhận chuyến[cite: 1]. | |
+| 2. Tài xế di chuyển đến điểm đón[cite: 1]. | |
+| 3. Tài xế cập nhật **Đã đến điểm đón**[cite: 1]. | |
+| 4. Tài xế đón khách[cite: 1]. | |
+| 5. Tài xế cập nhật **Đã đón khách**[cite: 1]. | |
+| 6. Tài xế bắt đầu di chuyển[cite: 1]. | |
+| 7. Tài xế cập nhật **Đang di chuyển**[cite: 1]. | |
+| 8. Tài xế đến điểm trả[cite: 1]. | |
+| 9. Tài xế cập nhật **Hoàn thành chuyến**[cite: 1]. | 10. Hệ thống cập nhật trạng thái và thông báo cho khách hàng[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Trạng thái không hợp lệ → Hệ thống từ chối cập nhật[cite: 1].
+- Mất kết nối → Hệ thống xử lý theo chính sách được doanh nghiệp xác định[cite: 1].
+
+---
+
+### UC15 – Hoàn thành chuyến
+* Actor chính: Tài xế[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Xác nhận chuyến đi đã hoàn thành[cite: 1].
+* Tiền điều kiện : Tài xế đã thực hiện chuyến và khách hàng đã đến điểm trả[cite: 1].
+* Hậu điều kiện : Chuyến được cập nhật trạng thái hoàn thành và chuyển sang bước tính cước/thanh toán[cite: 1].
+
+**Luồng chính:**
+| Tài xế | Hệ thống |
+|---|---|
+| 1. Tài xế đưa khách đến điểm trả[cite: 1]. | |
+| 2. Tài xế chọn **Hoàn thành chuyến**[cite: 1]. | 3. Hệ thống kiểm tra thông tin chuyến[cite: 1]. |
+| | 4. Hệ thống cập nhật trạng thái hoàn thành[cite: 1]. |
+| | 5. Hệ thống xác định số tiền khách hàng phải trả[cite: 1]. |
+| | 6. Hệ thống thông báo chuyến hoàn thành cho khách hàng[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Chuyến chưa đủ điều kiện → Hệ thống không cho phép hoàn thành[cite: 1].
+- Lỗi hệ thống → Hệ thống thông báo và ghi nhận để xử lý[cite: 1].
+
+---
+
+# 3. NHÂN VIÊN VẬN HÀNH
+
+### UC16 – Quản lý khách hàng
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Quản lý thông tin khách hàng trong hệ thống[cite: 1].
+* Tiền điều kiện : Nhân viên vận hành đã đăng nhập và có quyền phù hợp[cite: 1].
+* Hậu điều kiện : Thông tin khách hàng được xem hoặc cập nhật[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Quản lý khách hàng**[cite: 1]. | 2. Hệ thống hiển thị danh sách khách hàng[cite: 1]. |
+| 3. Nhân viên tìm kiếm khách hàng[cite: 1]. | 4. Hệ thống hiển thị thông tin[cite: 1]. |
+| 5. Nhân viên thực hiện thao tác được cấp quyền[cite: 1]. | 6. Hệ thống kiểm tra quyền[cite: 1]. |
+| | 7. Hệ thống lưu thay đổi nếu có[cite: 1]. |
+| | 8. Hệ thống thông báo kết quả[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Không tìm thấy khách hàng → Hệ thống thông báo[cite: 1].
+- Không đủ quyền → Hệ thống từ chối thao tác[cite: 1].
+
+---
+
+### UC17 – Quản lý tài xế
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Quản lý tài xế và hỗ trợ tạo tài khoản tài xế[cite: 1].
+* Tiền điều kiện : Nhân viên vận hành đã đăng nhập[cite: 1].
+* Hậu điều kiện : Thông tin tài xế được cập nhật[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Quản lý tài xế**[cite: 1]. | 2. Hệ thống hiển thị danh sách tài xế[cite: 1]. |
+| 3. Nhân viên tìm kiếm tài xế[cite: 1]. | |
+| 4. Nhân viên xem hoặc cập nhật thông tin[cite: 1]. | |
+| 5. Nếu cần, nhân viên tạo tài khoản cho tài xế[cite: 1]. | 6. Hệ thống kiểm tra dữ liệu[cite: 1]. |
+| | 7. Hệ thống lưu thông tin[cite: 1]. |
+| | 8. Hệ thống thông báo kết quả[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Thông tin không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+- Tài khoản đã tồn tại → Hệ thống thông báo[cite: 1].
+- Không đủ quyền → Hệ thống từ chối thao tác[cite: 1].
+
+---
+
+### UC18 – Quản lý phương tiện (Nhân viên vận hành)
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Quản lý thông tin phương tiện trong hệ thống[cite: 1].
+* Tiền điều kiện : Nhân viên vận hành đã đăng nhập[cite: 1].
+* Hậu điều kiện : Thông tin phương tiện được cập nhật[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Quản lý phương tiện**[cite: 1]. | 2. Hệ thống hiển thị danh sách phương tiện[cite: 1]. |
+| 3. Nhân viên tìm kiếm phương tiện[cite: 1]. | |
+| 4. Nhân viên xem hoặc cập nhật thông tin[cite: 1]. | 5. Hệ thống kiểm tra dữ liệu[cite: 1]. |
+| | 6. Hệ thống lưu thay đổi[cite: 1]. |
+| | 7. Hệ thống thông báo kết quả[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Phương tiện không tồn tại → Hệ thống thông báo[cite: 1].
+- Dữ liệu không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
+- Không đủ quyền → Hệ thống từ chối[cite: 1].
+
+---
+
+### UC19 – Giám sát chuyến đi
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Theo dõi các chuyến đang diễn ra[cite: 1].
+* Tiền điều kiện : Nhân viên vận hành đã đăng nhập[cite: 1].
+* Hậu điều kiện : Thông tin chuyến được hiển thị để hỗ trợ vận hành[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Giám sát chuyến đi**[cite: 1]. | 2. Hệ thống hiển thị các chuyến đang diễn ra[cite: 1]. |
+| 3. Nhân viên chọn chuyến cần theo dõi[cite: 1]. | 4. Hệ thống hiển thị tài xế, trạng thái và thông tin chuyến[cite: 1]. |
+| | 5. Hệ thống cập nhật dữ liệu[cite: 1]. |
+| 6. Nhân viên theo dõi và hỗ trợ khi cần[cite: 1]. | |
+
+**Luồng thay thế/ngoại lệ:**
+- Không có chuyến đang diễn ra → Hệ thống thông báo[cite: 1].
+- Dữ liệu không cập nhật → Hệ thống hiển thị dữ liệu gần nhất[cite: 1].
+
+---
+
+### UC20 – Theo dõi trạng thái tài xế
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Kiểm tra trạng thái hoạt động của tài xế[cite: 1].
+* Tiền điều kiện : Nhân viên vận hành đã đăng nhập[cite: 1].
+* Hậu điều kiện : Trạng thái tài xế được hiển thị[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Theo dõi trạng thái tài xế**[cite: 1]. | 2. Hệ thống hiển thị danh sách tài xế[cite: 1]. |
+| | 3. Hệ thống hiển thị trạng thái hoạt động[cite: 1]. |
+| 4. Nhân viên chọn tài xế cần xem[cite: 1]. | 5. Hệ thống hiển thị vị trí và chuyến đang thực hiện nếu có[cite: 1]. |
+| 6. Nhân viên theo dõi trạng thái[cite: 1]. | |
+
+**Luồng thay thế/ngoại lệ:**
+- Không tìm thấy tài xế → Hệ thống thông báo[cite: 1].
+- Không có dữ liệu vị trí → Hệ thống hiển thị trạng thái gần nhất[cite: 1].
+
+---
+
+### UC21 – Xử lý trường hợp bất thường
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Hỗ trợ xử lý các chuyến bị lỗi hoặc trường hợp bất thường[cite: 1].
+* Tiền điều kiện : Có chuyến hoặc trường hợp cần hỗ trợ[cite: 1].
+* Hậu điều kiện : Trường hợp được xử lý hoặc chuyển cấp[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên nhận thông tin trường hợp bất thường[cite: 1]. | |
+| 2. Nhân viên mở thông tin chuyến[cite: 1]. | 3. Hệ thống hiển thị dữ liệu liên quan[cite: 1]. |
+| 4. Nhân viên kiểm tra nguyên nhân[cite: 1]. | |
+| 5. Nhân viên thực hiện phương án xử lý[cite: 1]. | 6. Hệ thống cập nhật kết quả[cite: 1]. |
+| | 7. Hệ thống lưu vết thao tác[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Không thể xử lý → Chuyển cấp có thẩm quyền[cite: 1].
+- Thiếu thông tin → Hệ thống yêu cầu bổ sung[cite: 1].
+- Lỗi hệ thống → Hệ thống ghi nhận để xử lý[cite: 1].
+
+---
+
+### UC22 – Tra cứu lịch sử giao dịch
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Tra cứu lịch sử giao dịch thanh toán[cite: 1].
+* Tiền điều kiện : Nhân viên đã đăng nhập và có quyền tra cứu[cite: 1].
+* Hậu điều kiện : Thông tin giao dịch được hiển thị[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Nhân viên chọn **Tra cứu giao dịch**[cite: 1]. | 2. Hệ thống hiển thị giao diện tra cứu[cite: 1]. |
+| 3. Nhân viên nhập điều kiện tìm kiếm[cite: 1]. | 4. Hệ thống truy xuất dữ liệu[cite: 1]. |
+| | 5. Hệ thống hiển thị danh sách giao dịch[cite: 1]. |
+| 6. Nhân viên chọn giao dịch[cite: 1]. | 7. Hệ thống hiển thị chi tiết[cite: 1]. |
+
+**Luồng thay thế/ngoại lệ:**
+- Không tìm thấy giao dịch → Hệ thống thông báo[cite: 1].
+- Không đủ quyền → Hệ thống từ chối truy cập[cite: 1].
+- Lỗi truy xuất → Hệ thống thông báo lỗi[cite: 1].
+
+---
+
+### UC23 – Xem báo cáo
+* Actor chính: Nhân viên vận hành[cite: 1]
+* Actor phụ : Hệ thống[cite: 1]
+* Mục tiêu : Theo dõi dữ liệu hoạt động của hệ thống[cite: 1].
+* Tiền điều kiện : Người dùng có quyền xem báo cáo[cite: 1].
+* Hậu điều kiện : Báo cáo được hiển thị[cite: 1].
+
+**Luồng chính:**
+| Nhân viên vận hành | Hệ thống |
+|---|---|
+| 1. Người dùng chọn **Báo cáo**[cite: 1]. | 2. Hệ thống hiển thị các loại báo cáo[cite: 1]. |
+| 3. Người dùng chọn loại báo cáo[cite: 1]. | |
+| 4. Chọn khoảng thời gian và điều kiện lọc[cite: 1]. | 5. Hệ thống truy xuất dữ liệu[cite: 1]. |
+| | 6. Hệ thống tổng hợp dữ liệu[cite: 1]. |
+| | 7. Hệ thống hiển thị báo cáo[cite: 1]. |
+
+**Các báo cáo theo yêu cầu khách hàng:**
+- Số lượng chuyến[cite: 1].
+- Doanh thu[cite: 1].
+- Tỷ lệ chuyến hoàn thành[cite: 1].
+- Tỷ lệ chuyến hủy[cite: 1].
+- Hiệu quả hoạt động của tài xế[cite: 1].
+
+**Luồng thay thế/ngoại lệ:**
+- Không có dữ liệu → Hệ thống thông báo[cite: 1].
+- Điều kiện lọc không hợp lệ → Hệ thống yêu cầu nhập lại[cite: 1].
   ## 9. Phân tích quy trình nghiệp vụ
 1. **Giai đoạn Khởi tạo & Tiếp nhận:** 
    - Khách hàng thực hiện định danh tài khoản, nhập lộ trình điểm đón và điểm đến. 
