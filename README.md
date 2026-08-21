@@ -19,13 +19,9 @@
 | **3** | Tài xế | Nhà cung cấp dịch vụ, người thực thi quy trình|
 | **4** | Nhân viên vận hành | Người vận hành quy trình|
 | **5** | Quản trị viên  | Người kiểm soát quy trình|
-| **6** | Bộ phận Kế toán / Tài chính | Người kiểm soát tài chính|
-| **7** | Bộ phận CSKH | Chủ sở hữu dịch vụ hỗ trợ|
-| **8** | Đội ngũ IT / DevOps | Kiến trúc sư hệ thống & Người bảo trì|
-| **9** | Nhà cung cấp thanh toán | Nhà cung cấp tích hợp bên ngoài|
-| **10** | Nhà cung cấp bản đồ / định vị | Nhà cung cấp dữ liệu bên ngoài|
-| **11** | Nhà cung cấp dịch vụ thông báo | Nhà cung cấp dịch vụ truyền thông bên ngoài|
-| **12** | Bộ phận Pháp chế / Cơ quan quản lý | Người đánh giá sự tuân thủ|
+| **6** | Nhà cung cấp thanh toán | Nhà cung cấp tích hợp bên ngoài|
+| **7** | Nhà cung cấp bản đồ / định vị | Nhà cung cấp dữ liệu bên ngoài|
+| **8** | Nhà cung cấp dịch vụ thông báo | Nhà cung cấp dịch vụ truyền thông bên ngoài|
 
 ### Ma trận Matrix
 ```mermaid
@@ -40,19 +36,13 @@ quadrantChart
     quadrant-4 "Cập nhật thông tin"
 
     "Ban Giám đốc": [0.85, 0.90]
-    "IT/DevOps": [0.85, 0.82]
     "Nhân viên vận hành": [0.78, 0.78]
-    "Admin": [0.75, 0.72]
-
-    "Pháp chế": [0.25, 0.80]
-    "Kế toán/Tài chính": [0.65, 0.62]
+    "Quản trị viên": [0.75, 0.72]
 
     "Khách hàng": [0.90, 0.35]
     "Tài xế": [0.85, 0.32]
-    "CSKH": [0.72, 0.28]
 
-    "Nhà cung cấp thanh toán": [0.42, 0.42]
-    "Nhà cung cấp bản đồ": [0.35, 0.35]
+    "Nhà cung cấp thanh toán": [0.42, 0.30]
     "Nhà cung cấp thông báo": [0.30, 0.22]
 ```
 ## Giải thích Ma trận:
@@ -60,116 +50,6 @@ quadrantChart
 * Giữ sự hài lòng: Pháp chế, Kế toán/Tài chính. Nhóm có quyền lực tương đối cao nhưng không trực tiếp tham gia toàn bộ quy trình, cần đảm bảo yêu cầu được đáp ứng.
 * Cập nhật thông tin: Khách hàng, Tài xế, CSKH. Nhóm có mức độ quan tâm cao nhưng quyền quyết định thấp, cần được cung cấp thông tin và hỗ trợ thường xuyên.
 * Theo dõi tối thiểu: Nhà cung cấp thanh toán, Bản đồ/định vị, Dịch vụ thông báo. Chủ yếu cung cấp dịch vụ hỗ trợ bên ngoài, cần theo dõi tình trạng dịch vụ và xử lý khi có sự cố.
-## Minmap
-```mermaid
-mindmap
-  root((CAB - Business Process))
-    Stakeholders
-      Ban Giám đốc
-      Khách hàng
-      Tài xế
-      Nhân viên vận hành
-      Quản trị viên
-      Kế toán/Tài chính
-      CSKH
-      IT/DevOps
-      Pháp chế
-      Nhà cung cấp thanh toán
-      Nhà cung cấp bản đồ/định vị
-      Nhà cung cấp thông báo
-
-    Business Process
-      Tiếp nhận yêu cầu đặt xe
-        Nhập điểm đón
-        Nhập điểm đến
-        Chọn loại xe
-        Gửi yêu cầu
-      Tìm và phân công tài xế
-        Xác định tài xế phù hợp
-        Gửi yêu cầu chuyến
-        Tài xế chấp nhận
-        Tài xế từ chối
-        Tìm tài xế khác
-      Thực hiện chuyến
-        Đến điểm đón
-        Đón khách
-        Đang thực hiện
-        Hoàn thành
-      Thanh toán
-        Tính cước
-        Chọn phương thức
-        Thực hiện thanh toán
-        Ghi nhận kết quả
-      Đánh giá
-        Khách hàng đánh giá
-        Ghi nhận đánh giá
-
-    Actors
-      Khách hàng
-      Tài xế
-      Hệ thống CAB
-      Nhân viên vận hành
-      Kế toán/Tài chính
-      Quản trị viên
-      Nhà cung cấp dịch vụ
-
-    Business Rules
-      Khách hàng phải có tài khoản
-      Tài xế phải sẵn sàng
-      Tài xế được chấp nhận hoặc từ chối
-      Từ chối thì tìm tài xế khác
-      Không bắt khách đặt lại
-      Không tìm được tài xế thì thông báo
-      Cập nhật trạng thái chuyến
-      Không lưu thông tin thanh toán nhạy cảm
-      Kiểm soát quyền quản trị
-      Lưu vết thao tác quan trọng
-
-    Task Analysis
-      Trigger
-      Input
-      Steps
-      Decision
-      Output
-      Business Rules
-      Exception
-
-    Open Issues
-      Công thức tính cước
-      Tiêu chí ưu tiên tài xế
-      Thời gian phản hồi
-      Chính sách hủy chuyến
-      Mất kết nối mạng
-      Thời gian lưu dữ liệu
-      Thanh toán thất bại
-
-    Requirements
-      Business Requirements
-        Đặt xe
-        Phân công tài xế
-        Theo dõi chuyến
-        Tính cước
-        Thanh toán
-        Đánh giá
-        Giám sát vận hành
-      Functional Requirements
-        Quản lý khách hàng
-        Quản lý tài xế
-        Điều phối chuyến
-        Theo dõi trạng thái
-        Quản lý thanh toán
-        Thông báo
-        Đánh giá
-        Báo cáo
-
-    Process Model
-      Start
-      Task
-      Decision
-      Flow
-      Exception
-      End
-```
 
 ## 3. Business Purpose
 * **Tối ưu hóa hiệu suất vận hành:** Tự động hóa quá trình tìm kiếm và phân công tài xế phù hợp nhằm giảm thời gian chờ và nâng cao tỷ lệ hoàn thành chuyến.
