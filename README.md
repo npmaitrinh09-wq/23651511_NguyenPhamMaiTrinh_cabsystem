@@ -681,6 +681,12 @@ quadrantChart
 - **4a.** Lỗi hệ thống → Hệ thống thông báo không thể đăng xuất, Người dùng có thể thực hiện lại.
 
   ## 9. Phân tích quy trình nghiệp vụ
+  ### 9.1. Activity Diagram – UC04: Đặt xe
+  <img width="820" height="980" alt="Đặt xe" src="https://github.com/user-attachments/assets/9efdcc58-51dc-4777-80b8-d25d545fe96c" />
+
+  ### 9.2. Activity Diagram – UC07: Tính cước và thanh toán
+  <img width="1150" height="930" alt="Thanh toán" src="https://github.com/user-attachments/assets/8e01a8e4-2bec-4c39-9009-f8036b749532" />
+
   ## 10. Phân tích nguyên tắc nghiệp vụ
 * **Quy tắc Phân công và Xử lý từ chối:** Hệ thống ưu tiên lựa chọn tài xế phù hợp dựa trên vị trí, trạng thái sẵn sàng và các tiêu chí vận hành được doanh nghiệp xác định. Nếu tài xế được đề xuất từ chối hoặc không phản hồi trong thời gian giới hạn, hệ thống phải tự động chuyển tiếp sang tài xế tiếp theo mà không làm gián đoạn hoặc yêu cầu khách hàng phải tạo lại yêu cầu.
 * **Quy tắc Tách biệt Dữ liệu Thanh toán & Bảo mật:** Tuyệt đối không lưu trữ trực tiếp thông tin nhạy cảm của thẻ hoặc tài khoản thanh toán nội bộ bên trong hệ thống CAB System. Mọi giao dịch điện tử phải được thực hiện thông qua liên kết bảo mật với nhà cung cấp cổng thanh toán độc lập bên ngoài.
