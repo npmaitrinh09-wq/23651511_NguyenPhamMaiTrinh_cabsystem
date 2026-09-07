@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC21 xu ly truong hop bat thuong
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC21-xu-ly-truong-hop-bat-thuong của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Operation
+security:
+- bearerAuth: []
+paths:
+  /operations/incidents:
+    get:
+      tags:
+      - Operation
+      summary: UC21 - Danh sách trường hợp bất thường
+      responses:
+        '200':
+          description: Danh sách sự cố
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Incident'
+    post:
+      tags:
+      - Operation
+      summary: UC21 - Ghi nhận trường hợp bất thường
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentRequest'
+      responses:
+        '201':
+          description: Ghi nhận thành công
+  /operations/incidents/{incidentId}:
+    patch:
+      tags:
+      - Operation
+      summary: UC21 - Cập nhật kết quả xử lý bất thường
+      parameters:
+      - name: incidentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum:
+                  - OPEN
+                  - PROCESSING
+                  - RESOLVED
+                  - ESCALATED
+                resolution:
+                  type: string
+      responses:
+        '200':
+          description: Cập nhật xử lý thành công
+components:
+  schemas:
+    IncidentRequest:
+      type: object
+      required:
+      - tripId
+      - description
+      properties:
+        tripId:
+          type: integer
+        description:
+          type: string
+        severity:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+          - CRITICAL
+    Incident:
+      allOf:
+      - type: object
+        properties:
+          id:
+            type: integer
+          status:
+            type: string
+            enum:
+            - OPEN
+            - PROCESSING
+            - RESOLVED
+            - ESCALATED
+          resolution:
+            type: string
+            nullable: true
+      - $ref: '#/components/schemas/IncidentRequest'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

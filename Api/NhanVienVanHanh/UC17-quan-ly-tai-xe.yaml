@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC17 quan ly tai xe
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC17-quan-ly-tai-xe của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Operation
+security:
+- bearerAuth: []
+paths:
+  /operations/drivers:
+    get:
+      tags:
+      - Operation
+      summary: UC17 - Quản lý tài xế
+      parameters:
+      - name: keyword
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Danh sách tài xế
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      tags:
+      - Operation
+      summary: UC17 - Tạo tài khoản tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Tạo tài khoản tài xế thành công
+        '409':
+          description: Tài khoản đã tồn tại
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        fullName:
+          type: string
+          example: Nguyen Van A
+        phone:
+          type: string
+          example: 0901234567
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - DRIVER
+          - OPERATOR
+          - ADMIN
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - LOCKED
+    RegisterRequest:
+      type: object
+      required:
+      - fullName
+      - phone
+      - password
+      - role
+      properties:
+        fullName:
+          type: string
+          example: Nguyen Van A
+        phone:
+          type: string
+          example: 0901234567
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          minLength: 6
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - DRIVER
+          - OPERATOR
+          - ADMIN
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
