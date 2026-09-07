@@ -693,3 +693,41 @@ quadrantChart
 * **Quy tắc Phân quyền và Kiểm soát Truy cập RBAC:** Mọi tác nhân (Khách hàng, Tài xế, Nhân viên vận hành) phải đi qua cổng định danh và xác thực an toàn. Các thao tác quản trị hệ thống nhạy cảm phải được phân quyền chặt chẽ theo vai trò (RBAC) để bảo vệ dữ liệu cá nhân, phương tiện và giao dịch.
 * **Quy tắc Kiến trúc Độc lập & Ổn định:** Các thành phần chức năng (như Thanh toán, Thông báo, Đặt xe) phải được thiết kế dạng module mở rộng độc lập. Khi một sự cố xảy ra ở module phụ trợ (ví dụ lỗi cổng thanh toán hoặc lỗi gửi thông báo), hệ thống không được làm ngưng trệ toàn bộ nền tảng đặt xe và cho phép triển khai nâng cấp từng phần.
   
+## 11. API Documentation
+
+Các API của hệ thống được xây dựng dựa trên các Use Case đã đặc tả và mô tả bằng OpenAPI 3.0.
+
+### Khách hàng
+- [UC01 - Đăng ký tài khoản](Api/KhachHang/UC01-dang-ky-tai-khoan.yaml)
+- [UC02 - Đăng nhập](Api/KhachHang/UC02-dang-nhap.yaml)
+- [UC03 - Quản lý hồ sơ](Api/KhachHang/UC03-quan-ly-ho-so.yaml)
+- [UC04 - Đặt xe](Api/KhachHang/UC04-dat-xe.yaml)
+- [UC05 - Theo dõi chuyến đi](Api/KhachHang/UC05-theo-doi-chuyen-di.yaml)
+- [UC06 - Xem lịch sử chuyến đi](Api/KhachHang/UC06-xem-lich-su-chuyen-di.yaml)
+- [UC07 - Tính cước và thanh toán](Api/KhachHang/UC07-tinh-cuoc-va-thanh-toan.yaml)
+- [UC08 - Đánh giá tài xế](Api/KhachHang/UC08-danh-gia-tai-xe.yaml)
+- [UC09 - Hủy chuyến](Api/KhachHang/UC09-huy-chuyen.yaml)
+
+### Tài xế
+- [UC10 - Quản lý phương tiện cá nhân](Api/TaiXe/UC10-quan-ly-phuong-tien-ca-nhan.yaml)
+- [UC11 - Cập nhật trạng thái hoạt động](Api/TaiXe/UC11-cap-nhat-trang-thai-hoat-dong.yaml)
+- [UC12 - Cập nhật vị trí](Api/TaiXe/UC12-cap-nhat-vi-tri.yaml)
+- [UC13 - Nhận chuyến](Api/TaiXe/UC13-nhan-chuyen.yaml)
+- [UC14 - Từ chối chuyến](Api/TaiXe/UC14-tu-choi-chuyen.yaml)
+- [UC15 - Cập nhật trạng thái chuyến](Api/TaiXe/UC15-cap-nhat-trang-thai-chuyen.yaml)
+
+### Nhân viên vận hành
+- [UC16 - Quản lý khách hàng](Api/NhanVienVanHanh/UC16-quan-ly-khach-hang.yaml)
+- [UC17 - Quản lý tài xế](Api/NhanVienVanHanh/UC17-quan-ly-tai-xe.yaml)
+- [UC18 - Quản lý phương tiện](Api/NhanVienVanHanh/UC18-quan-ly-phuong-tien.yaml)
+- [UC19 - Giám sát chuyến đi](Api/NhanVienVanHanh/UC19-giam-sat-chuyen-di.yaml)
+- [UC20 - Theo dõi trạng thái tài xế](Api/NhanVienVanHanh/UC20-theo-doi-trang-thai-tai-xe.yaml)
+- [UC21 - Xử lý trường hợp bất thường](Api/NhanVienVanHanh/UC21-xu-ly-truong-hop-bat-thuong.yaml)
+- [UC22 - Tra cứu lịch sử giao dịch](Api/NhanVienVanHanh/UC22-tra-cuu-lich-su-giao-dich.yaml)
+- [UC23 - Tra cứu chuyến đi](Api/NhanVienVanHanh/UC23-tra-cuu-chuyen-di.yaml)
+
+### Quản trị viên
+- [UC24 - Xem báo cáo](Api/QuanTriVien/UC24-xem-bao-cao.yaml)
+- [UC25 - Quản lý quyền truy cập](Api/QuanTriVien/UC25-quan-ly-quyen-truy-cap.yaml)
+- [UC26 - Quản lý tài khoản](Api/QuanTriVien/UC26-quan-ly-tai-khoan.yaml)
+- [UC27 - Đăng xuất](Api/QuanTriVien/UC27-dang-xuat.yaml)
