@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC12 cap nhat vi tri
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC12-cap-nhat-vi-tri của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Driver
+security:
+- bearerAuth: []
+paths:
+  /driver/location:
+    patch:
+      tags:
+      - Driver
+      summary: UC12 - Cập nhật vị trí tài xế
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Location'
+      responses:
+        '200':
+          description: Cập nhật vị trí thành công
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  schemas:
+    Location:
+      type: object
+      required:
+      - latitude
+      - longitude
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 10.8231
+        longitude:
+          type: number
+          format: double
+          example: 106.6297
+        address:
+          type: string
+          example: Go Vap, TP.HCM
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: Dữ liệu không hợp lệ
+  responses:
+    BadRequest:
+      description: Dữ liệu đầu vào không hợp lệ
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

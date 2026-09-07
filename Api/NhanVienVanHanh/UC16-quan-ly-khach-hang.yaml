@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC16 quan ly khach hang
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC16-quan-ly-khach-hang của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Operation
+security:
+- bearerAuth: []
+paths:
+  /operations/customers:
+    get:
+      tags:
+      - Operation
+      summary: UC16 - Quản lý khách hàng
+      parameters:
+      - name: keyword
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Danh sách khách hàng
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /operations/customers/{customerId}:
+    get:
+      tags:
+      - Operation
+      summary: Xem chi tiết khách hàng
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Chi tiết khách hàng
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      tags:
+      - Operation
+      summary: Cập nhật thông tin khách hàng
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileUpdateRequest'
+      responses:
+        '200':
+          description: Cập nhật thành công
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    Forbidden:
+      description: Không có quyền thực hiện thao tác
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: Dữ liệu không hợp lệ
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        fullName:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        fullName:
+          type: string
+          example: Nguyen Van A
+        phone:
+          type: string
+          example: 0901234567
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - DRIVER
+          - OPERATOR
+          - ADMIN
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - LOCKED
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

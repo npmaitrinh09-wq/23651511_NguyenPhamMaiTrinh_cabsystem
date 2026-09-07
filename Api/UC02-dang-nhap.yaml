@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC02 dang nhap
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC02-dang-nhap của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Authentication
+security:
+- bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      tags:
+      - Authentication
+      summary: UC02 - Đăng nhập
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Đăng nhập thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '423':
+          description: Tài khoản bị khóa
+components:
+  responses:
+    Unauthorized:
+      description: Chưa đăng nhập hoặc token không hợp lệ
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: Dữ liệu không hợp lệ
+    LoginResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        accessToken:
+          type: string
+          example: eyJhbGciOiJIUzI1NiJ9...
+        tokenType:
+          type: string
+          example: Bearer
+        user:
+          $ref: '#/components/schemas/User'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        fullName:
+          type: string
+          example: Nguyen Van A
+        phone:
+          type: string
+          example: 0901234567
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum:
+          - CUSTOMER
+          - DRIVER
+          - OPERATOR
+          - ADMIN
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - LOCKED
+    LoginRequest:
+      type: object
+      required:
+      - username
+      - password
+      properties:
+        username:
+          type: string
+          example: 0901234567
+        password:
+          type: string
+          format: password
+          example: '123456'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

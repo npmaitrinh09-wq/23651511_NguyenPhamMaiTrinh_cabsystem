@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC07 tinh cuoc va thanh toan
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC07-tinh-cuoc-va-thanh-toan của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Payment
+security:
+- bearerAuth: []
+paths:
+  /trips/{tripId}/fare:
+    get:
+      tags:
+      - Payment
+      summary: UC07 - Tính cước chuyến đi
+      parameters:
+      - $ref: '#/components/parameters/TripId'
+      responses:
+        '200':
+          description: Số tiền phải thanh toán
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Fare'
+  /trips/{tripId}/payments:
+    post:
+      tags:
+      - Payment
+      summary: UC07 - Thanh toán chuyến đi
+      parameters:
+      - $ref: '#/components/parameters/TripId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+      responses:
+        '201':
+          description: Ghi nhận thanh toán thành công
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '502':
+          description: Nhà cung cấp thanh toán không phản hồi hoặc giao dịch thất bại
+components:
+  parameters:
+    TripId:
+      name: tripId
+      in: path
+      required: true
+      schema:
+        type: integer
+        example: 1001
+  schemas:
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+        tripId:
+          type: integer
+        amount:
+          type: number
+          format: double
+        method:
+          type: string
+          enum:
+          - CASH
+          - ELECTRONIC
+        status:
+          type: string
+          enum:
+          - PENDING
+          - SUCCESS
+          - FAILED
+        transactionCode:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    Fare:
+      type: object
+      properties:
+        tripId:
+          type: integer
+        amount:
+          type: number
+          format: double
+          example: 45000
+        currency:
+          type: string
+          example: VND
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: Dữ liệu không hợp lệ
+    PaymentRequest:
+      type: object
+      required:
+      - method
+      properties:
+        method:
+          type: string
+          enum:
+          - CASH
+          - ELECTRONIC
+        provider:
+          type: string
+          nullable: true
+          example: MOMO
+  responses:
+    BadRequest:
+      description: Dữ liệu đầu vào không hợp lệ
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

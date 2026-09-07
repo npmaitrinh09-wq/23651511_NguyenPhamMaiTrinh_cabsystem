@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: CAB System API - UC24 xem bao cao
+  version: 1.0.0
+  description: OpenAPI riêng cho chức năng UC24-xem-bao-cao của CAB System.
+servers:
+- url: http://localhost:8080/api/v1
+  description: Local server
+tags:
+- name: Reports
+security:
+- bearerAuth: []
+paths:
+  /reports:
+    get:
+      tags:
+      - Reports
+      summary: UC24 - Xem báo cáo
+      parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - TRIPS
+          - REVENUE
+          - COMPLETION_RATE
+          - CANCELLATION_RATE
+          - DRIVER_PERFORMANCE
+      - name: from
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Dữ liệu báo cáo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+components:
+  responses:
+    BadRequest:
+      description: Dữ liệu đầu vào không hợp lệ
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errorCode:
+          type: string
+          example: INVALID_REQUEST
+        message:
+          type: string
+          example: Dữ liệu không hợp lệ
+    ReportResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        from:
+          type: string
+          format: date
+        to:
+          type: string
+          format: date
+        data:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
