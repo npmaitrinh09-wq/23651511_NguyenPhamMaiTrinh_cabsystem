@@ -694,9 +694,6 @@ quadrantChart
 * **Quy tắc Kiến trúc Độc lập & Ổn định:** Các thành phần chức năng (như Thanh toán, Thông báo, Đặt xe) phải được thiết kế dạng module mở rộng độc lập. Khi một sự cố xảy ra ở module phụ trợ (ví dụ lỗi cổng thanh toán hoặc lỗi gửi thông báo), hệ thống không được làm ngưng trệ toàn bộ nền tảng đặt xe và cho phép triển khai nâng cấp từng phần.
   
 ## 11. API Documentation
-
-Các API của hệ thống được xây dựng dựa trên các Use Case đã đặc tả và mô tả bằng OpenAPI 3.0.
-
 ### Khách hàng
 - [UC01 - Đăng ký tài khoản](Api/KhachHang/UC01-dang-ky-tai-khoan.yaml)
 - [UC02 - Đăng nhập](Api/KhachHang/UC02-dang-nhap.yaml)
