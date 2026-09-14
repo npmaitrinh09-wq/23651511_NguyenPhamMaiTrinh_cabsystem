@@ -223,7 +223,7 @@ quadrantChart
 
 **Luồng thay thế/ngoại lệ:**
 - **3a.** Điểm đón không hợp lệ → Hệ thống yêu cầu khách hàng nhập lại.
-- **4a.** Điểm đến không hợp lệ → Hệ thống yêu cầu khách hàng nhập lại.
+- **4a.** Điểm đến không hợp lệ → Hệ thống yêu cầu khách hàng nhập lại
 - **9a.** Không tìm được tài xế phù hợp → Hệ thống thông báo rõ ràng cho khách hàng.
 
 ### UC05 – Theo dõi chuyến đi
